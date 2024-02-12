@@ -1,0 +1,1 @@
+// how to display all movies in Now Showing of the homepage
