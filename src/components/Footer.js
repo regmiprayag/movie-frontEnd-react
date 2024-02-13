@@ -33,7 +33,7 @@ export const Footer = () => {
             <h1 className="text-xl text-gray-300">PAYMENT PARTNER</h1>
             <img className="h-20" src="https://bigmovies.com.np/Modules/SageFlick/PaymentMethod/images/e_sewa.png" alt="" />
         </div>
-        <div className="last mt-4 mt-6">
+        <div className="last mt-6">
             <h1 className="text-3xl">For Booking</h1>
             <h1 className="">For Marketing and Enquiries:</h1>
             <h1 className="">Email: hr@bigmovies.com.np</h1>

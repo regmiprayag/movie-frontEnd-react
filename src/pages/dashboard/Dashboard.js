@@ -4,9 +4,9 @@ import { SideMenu } from './SideMenu'
 
 export const Dashboard = () => {
   return (
-    <div className='mx-20'>
+    <div className='mx-20 flex'>
       <SideMenu/>
-        {/* <Movies/> */}
+        <Movies/>
     </div>
   )
 }

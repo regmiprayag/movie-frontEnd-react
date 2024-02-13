@@ -1,18 +1,33 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { userActions } from "../store";
+import { useDispatch } from "react-redux";
 import {
-    Link
-  } from "react-router-dom";
+    Card,
+    Typography
+  } from "@material-tailwind/react";
 
 export const Navbar = () => {
-  return (
-    <div>
+    const dispatch = useDispatch();
+
+    const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
+    
+    const handleClick = async () => {
+        dispatch(userActions.logout(false));
+    };
+    return (
+        <div>
             <nav className="sm:px-20 bg-blue-300 sticky left-0 top-0 z-10 flex items-center justify-between px-4 py-2 text-white">
                 <div>
-                    <img src="https://bigmovies.com.np/Modules/Logo/image/Big%20Movies%20logo%20-%20Copy_736038.jpg" alt="bigmovies" />
-                </div> 
+                    <img
+                        src="https://bigmovies.com.np/Modules/Logo/image/Big%20Movies%20logo%20-%20Copy_736038.jpg"
+                        alt="bigmovies"
+                    />
+                </div>
                 <div>
                     <ul className="flex gap-4">
-                         <li>
+                        <li>
                             <Link to="/">HOME</Link>
                         </li>
                         <li>
@@ -23,14 +38,53 @@ export const Navbar = () => {
                         </li>
                         <li>
                             <Link to="/ticket">TICKET RATE</Link>
-                        </li> 
+                        </li>
+                        {isUserLoggedIn && (
+                            <div>
+                                <ul className="flex gap-4">
+                                    <li>
+                                        <Link to="/booking">BOOKING</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/ticket">MY TICKET</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
                     </ul>
                 </div>
                 <div className="gap-5">
-                    <Link to='/login/admin'><button className="bg-yellow-400 p-2 rounded-lg mx-4">Login Now</button></Link>
-                    <Link to='/signup'><button className="bg-blue-400 p-2 rounded-lg">Register Now</button></Link>
-                </div> 
+                    {!isUserLoggedIn && (
+                        <>
+                            <Link to="/login/user">
+                                <button className="bg-yellow-400 mx-4 p-2 rounded-lg">
+                                    Login Now
+                                </button>
+                            </Link>
+                            <Link to="/signup/user">
+                                <button className="bg-blue-400 p-2 rounded-lg">Signup</button>
+                            </Link>
+                        </>
+                    )}
+                    {isUserLoggedIn && (
+                        <div className="">
+                            <Card color="transparent" shadow={false}>
+                                <Typography variant="h4" color="blue-gray" className='mx-auto text-3xl'>
+                                    {/* {user.name} */}
+                                </Typography>
+                            </Card>
+                            <Link to="/">
+                                <button
+                                    onClick={handleClick}
+                                    className="bg-red-400 mx-4 p-2 rounded-lg"
+                                >
+                                    Logout Now
+                                </button>
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </nav>
         </div>
-  )
+    )
 }
