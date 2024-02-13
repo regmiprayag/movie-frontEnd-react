@@ -30,8 +30,6 @@ export const getMovieById = async()=>{
     
 }
 
-//signup new users
-
 export const sendAuthSignupRequest = async(data)=>{
     // return data
     const res = await axios.post("/signup/user",{
@@ -41,6 +39,15 @@ export const sendAuthSignupRequest = async(data)=>{
     }).catch((err)=>{
         console.log({mess:"hyaa error ho hai",err})
     })
+    const resData = await res.data
+    return resData
+}
+
+export const getMovieDetails  = async(id)=>{
+    const res = await axios.get(`http://localhost:8000/common/movies/${id}`).catch((err)=>{console.log(err)})
+    // if(res.status!==200){
+    //     return console.log("Unexpected error ")
+    // }
     const resData = await res.data
     return resData
 }

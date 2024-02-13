@@ -16,7 +16,7 @@ const MovieDetails = ({movie}) => {
           <p className="font-normal text-gray-700 dark:text-gray-400">
             {movie && movie.description}
           </p>
-          <Link to='/:id/booking' className='w-96'><button onClick={handleClick} className='bg-blue-400 text-white w-full rounded-lg p-2'>Book Now</button></Link>
+          <Link to={`/booking/${movie._id}`} className='w-96'><button onClick={handleClick} className='bg-blue-400 text-white w-full rounded-lg p-2'>Book Now</button></Link>
     </div>
   )
 }

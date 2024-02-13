@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { userActions } from "../store";
 import { useDispatch } from "react-redux";
-import {
-    Card,
-    Typography
-  } from "@material-tailwind/react";
+// import {
+//     Card,
+//     Typography
+//   } from "@material-tailwind/react";
 
 export const Navbar = () => {
     const dispatch = useDispatch();
@@ -68,11 +68,10 @@ export const Navbar = () => {
                     )}
                     {isUserLoggedIn && (
                         <div className="">
-                            <Card color="transparent" shadow={false}>
+                            {/* <Card color="transparent" shadow={false}>
                                 <Typography variant="h4" color="blue-gray" className='mx-auto text-3xl'>
-                                    {/* {user.name} */}
                                 </Typography>
-                            </Card>
+                            </Card> */}
                             <Link to="/">
                                 <button
                                     onClick={handleClick}

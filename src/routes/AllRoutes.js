@@ -9,7 +9,6 @@ import * as pages from '../pages';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../store';
 
-
 export const AllRoutes = () => {
   const dispatch = useDispatch()
 
@@ -31,8 +30,8 @@ export const AllRoutes = () => {
           {/* <Route path='/login/admin' element={<pages.auth.Login/>}/> */}
           <Route path='/login/user' element={<pages.auth.AuthUser/>}/>
           <Route path='/signup/user' element={<pages.auth.SignupUser/>}/>
-          <Route path='/dashboard' element={<pages.dashboard.Dashboard/>}/>
-          <Route path='/:id/booking' element={<pages.booking.Booking/>}/>
+          {/* <Route path='/dashboard' element={<pages.dashboard.Dashboard/>}/> */}
+          <Route path='/booking/:id' element={<pages.booking.Booking/>}/>
         </Routes>
         <Footer />
       </div>
