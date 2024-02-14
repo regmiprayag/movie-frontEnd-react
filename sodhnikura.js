@@ -12,3 +12,6 @@
 // how to make the booking page when i click to the link http:localhost:8000/common/movies/:id => it says token missing
 // how to deal with tokens in frontend
 // how to upload image for the movie from postman.
+
+// PrivateRoutes
+// user details store and proceed further to the bookings.

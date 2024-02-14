@@ -5,22 +5,20 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom"
+import {useNavigate} from 'react-router-dom';
  
 export const LoginUser = ({onSubmit}) => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [error,setError]=useState('')
     // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
         onSubmit({email,password})
         try{
-          // const res = await axios.post("http://localhost:8000/login/user",{email,password})
-            // const {token} = res.data
-            // console.log({token, email,password})
-            // navigate("/")
+          navigate('/');
         }catch(err){
             setError("Invalid email or password")
         }

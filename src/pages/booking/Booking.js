@@ -13,18 +13,18 @@ import {
 import { getMovieDetails } from "../../api-helpers/api-helper";
 
 export const Booking = () => {
-  const [movie, setmovie] = useState("");
+  const [movie, setMovies] = useState({});
   const id = useParams().id;
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     getMovieDetails(id)
       .then((res) => {
-        setmovie(res.allmovies);
+        setMovies(res.movies);
       })
       .catch((err) => console.log(err));
   }, [id]);
-  console.log(movie);
+  
   return (
     <div className="">
       <Typography variant="h1" color="blue-gray" className="mb-2 m-8 flex justify-center">
