@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MovieDetails = ({movie}) => {
+const MovieDetails = ({movie, showtimes}) => {
   // const navigate = useNavigate()
   // console.log(movie);
   const handleClick = async()=>{
@@ -14,12 +14,14 @@ const MovieDetails = ({movie}) => {
 
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {movie && movie.title}
+              {showtimes && showtimes._id}
               {/* {movie.posterUrl} */}
           </h5>
           <p className="font-normal text-gray-700 dark:text-gray-400">
             {movie && movie.description}
           </p>
-          <Link to={`/booking/${movie._id}`} className='w-96'><button onClick={handleClick} className='bg-blue-400 text-white w-full rounded-lg p-2'>Book Now</button></Link>
+          <Link to={`/booking/${movie._id}`} className='w-96'><button onClick={handleClick} className='bg-blue-400 text-white w-full rounded-lg p-2'>{showtimes.startime}</button></Link>
+          {/* <Link to={`/booking/${movie._id}`} className='w-96'><button onClick={handleClick} className='bg-blue-400 text-white w-full rounded-lg p-2'>Book Now</button></Link> */}
     </div>
   )
 }

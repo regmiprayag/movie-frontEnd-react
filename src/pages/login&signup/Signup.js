@@ -33,7 +33,7 @@ export const Signup = ({onSubmit}) => {
         value={name}
         onChange={(e)=>{setName(e.target.value)}}
         size="lg"
-        placeholder="name@mail.com"
+        placeholder="Full Name"
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2"
         labelProps={{
           className: "before:content-none after:content-none",

@@ -17,8 +17,9 @@ export const Navbar = () => {
         dispatch(userActions.logout(false));
     };
     return (
-        <div>
-            <nav className="sm:px-20 bg-blue-300 sticky left-0 top-0 z-10 flex items-center justify-between px-4 py-2 text-white">
+        <div className="">
+            {/* <nav className="sticky top-0 left-0"> */}
+            <nav className=" bg-blue-300 sticky top-0 left-0 z-10 flex items-center justify-between px-4 py-2 text-white sm:px-20">
                 <div>
                     <img
                         src="https://bigmovies.com.np/Modules/Logo/image/Big%20Movies%20logo%20-%20Copy_736038.jpg"

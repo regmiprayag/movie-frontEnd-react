@@ -25,7 +25,7 @@ export const AllRoutes = () => {
   return (
     <div>
       <div>
-        <Navbar/>
+        <Navbar className=""/>
         <Routes>
           <Route path='/' element={<pages.home.Home/>}/>
           {/* <Route path='/login/admin' element={<pages.auth.Login/>}/> */}

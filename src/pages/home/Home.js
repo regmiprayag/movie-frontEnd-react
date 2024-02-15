@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { CardBody, Card, Typography, Button } from '@material-tailwind/react';
 import MovieDetails from './moviesDetails/MovieDetails';
-import { getAllMovie } from '../../api-helpers/api-helper';
+import { getAllMovie, getAllShows } from '../../api-helpers/api-helper';
 import {Link} from "react-router-dom"
 
 const Home = () => {
   const [movies, setmovies] = useState([])
+  const [showtimes, setShowtimes] = useState([])
   useEffect(() => {
     getAllMovie().then((data) => {
         setmovies(data.movies)
+        getAllShows(data.movies[0]._id)
+          .then((data)=>{
+            // console.log("showtimes:", data.message)
+            setShowtimes(data.message)
+          })
+        // console.log(data.movies[0]._id)
+        // console.log(movies)
+        // console.log(data.movies._id)
+        // .then((data)=>{
+        //   console.log(data)
+        // })
     }).catch((err) => {
         console.log("message:", err)
     })
 }, []);
+
+  console.log(showtimes[0])
   
   return (
     <div className=''>
@@ -43,7 +57,7 @@ const Home = () => {
         <h1 className='text-5xl mx-auto my-4'>Now Showing</h1>
         <div className='allMovies flex mx-auto gap-4 p-4'>
           {movies?.map((movie) => (
-            <MovieDetails key={movie._id} movie={movie} />
+            <MovieDetails key={movie._id} showtimes={showtimes} movie={movie} />
           ))}
         </div>
 

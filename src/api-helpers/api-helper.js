@@ -15,6 +15,18 @@ export const getAllMovie = async() => {
     return data;
 }
 
+//Getting all Seat of the movie
+export const getAllShows = async(id)=>{
+    const res = await axios
+        .get(`http://localhost:8000/showtimes/${id}`)
+        .catch((err)=>{
+            console.log(err)
+        })
+    // console.log(res.data)
+    const data = await res.data
+    return data
+}
+
 export const sendUserLoginRequest = async(data)=>{
     const res = await axios.post("http://localhost:8000/login/user",{
         email: data.email,
@@ -22,6 +34,7 @@ export const sendUserLoginRequest = async(data)=>{
     }).catch((err)=>{
         console.log(err)
     })
+    
     const resData = await res.data
     return resData
 }
@@ -36,8 +49,6 @@ export const userDetails = async () => {
             'Authorization': `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
         }
     })
-    // const data = await res.data;
-    // console.log(await res.data);
     const data = await res.data;
     return data;
 };

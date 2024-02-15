@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    isLoggedIn:false,
     value: {}
 }
 
@@ -26,3 +27,17 @@ export const store = configureStore({
         user:userSlice.reducer,
     }
 })
+
+const logoutAfterTwoMinutes = () => {
+    setTimeout(() => {
+        store.dispatch(userActions.logout()); // Dispatch the logout action
+    }, 10 * 60 * 1000); // 1 minutes in milliseconds
+}
+
+// Call the function when the user logs in
+store.subscribe(() => {
+    const isLoggedIn = store.getState().user.isLoggedIn;
+    if (isLoggedIn) {
+        logoutAfterTwoMinutes();
+    }
+});

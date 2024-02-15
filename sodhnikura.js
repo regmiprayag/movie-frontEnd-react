@@ -15,3 +15,6 @@
 
 // PrivateRoutes
 // user details store and proceed further to the bookings.
+
+// I want to know how to use toaster when logged or logout.
+// I want to add showtimes when the movies are showtime in homepage.

@@ -47,7 +47,7 @@ export const Booking = () => {
             Description: {movie.description}
           </Typography>
           <Typography className=" mx-4 mt-4">
-            Release Date: {movie.releaseDate}
+            Release Date: {new Date(movie.releaseDate).toDateString()}
           </Typography>
           <Typography className=" mx-4 mt-4">
             Actors: {movie.actors}
