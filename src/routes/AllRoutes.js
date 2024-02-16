@@ -13,7 +13,8 @@ import PrivateRoute from './PrivateRoute';
 export const AllRoutes = () => {
   const dispatch = useDispatch()
 
-  const isUserLoggedIn = useSelector((state)=>state.user.isLoggedIn)
+  // const isUserLoggedIn = useSelector((state)=>state)
+  const isUserLoggedIn = useSelector((state)=>state.user.isLoggeIn)
   console.log("Is Logged logged in: ", isUserLoggedIn)
 
   useEffect(()=>{

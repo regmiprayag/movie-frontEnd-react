@@ -26,21 +26,22 @@ export const Booking = () => {
   }, [id]);
   
   return (
-    <div className="">
+    <div className="text-white">
       <Typography variant="h1" color="blue-gray" className="mb-2 m-8 flex justify-center">
         Book Tickts for {movie.title}
       </Typography>
+    <div className="mx-40 flex gap-40">
       <Card className="mt-6 w-96 p-2 border-2">
         <CardHeader color="blue-gray" className="relative h-56">
           <img
-            src="https://studybizz.com/film/wp-content/uploads/2023/12/images-65.jpeg"
-            className="w-dvh"
+            src={`http://localhost:8000/images/${movie.posterUrl}`}
+            className="w-full rounded-2xl"
             alt="card-image"
           />
         </CardHeader>
         
         <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2 m-4">
+          <Typography variant="h2" color="blue-gray" className="mb-2 m-4 text-3xl">
             {movie.title}
           </Typography>
           <Typography className=" mx-4 mt-4">
@@ -53,11 +54,17 @@ export const Booking = () => {
             Actors: {movie.actors}
           </Typography>
         </CardBody>
-
         <CardFooter className="pt-0">
-          <Button className="bg-black w-full">Read More</Button>
+          {/* <Button className="bg-black w-full">Read More</Button> */}
         </CardFooter>
       </Card>
+      <div className="mt-6 border border-white">
+        <Typography variant="h3" color="blue-gray" className="mb-2 m-8 flex justify-center">
+          Select Seats
+        </Typography>
+        
+      </div>
+    </div>
     </div>
   );
 };

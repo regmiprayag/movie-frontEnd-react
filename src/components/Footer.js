@@ -5,8 +5,8 @@ import {
 
 export const Footer = () => {
   return (
-    <div className="mt-20 bg-blue-400">
-    <footer className="flex justify-between">
+    <div className="mt-20 bg-gray-900 pt-8">
+    <footer className="flex justify-between mx-40 text-gray-300">
         <div className="first-col">
             <span>
                 <img className="h-14 mt-4" src="https://bigmovies.com.np/Upload/images/Big%20Movies%20logo.jpg" alt="" />
@@ -19,23 +19,23 @@ export const Footer = () => {
         </div>
         <div className="second-col mt-6">
             <h1 className="text-xl text-gray-300">QUICKLINKS</h1>
-            <div className="mt-4 gap-4 flex">
+            <div className="mt-4 gap-2 flex">
                 <ul className="">
                     <li><Link to="">Home</Link></li>
-                    <li className="mt-4"><Link to="">About Us</Link></li>
-                    <li className="mt-4"><Link to="">Moments</Link></li>
-                    <li className="mt-4"><Link to="">Ticket Rate</Link></li>
-                    <li className="mt-4 mb-20"><Link to="">Contact</Link></li>
+                    <li className="mt-2"><Link to="">About Us</Link></li>
+                    <li className="mt-2"><Link to="">Moments</Link></li>
+                    <li className="mt-2"><Link to="">Ticket Rate</Link></li>
+                    <li className="mt-2 mb-20"><Link to="">Contact</Link></li>
                 </ul>
             </div>
         </div>
         <div className="third-col mt-6">
             <h1 className="text-xl text-gray-300">PAYMENT PARTNER</h1>
-            <img className="h-20" src="https://bigmovies.com.np/Modules/SageFlick/PaymentMethod/images/e_sewa.png" alt="" />
+            <img className="h-14 bg-white rounded-lg w-24 mt-4" src="https://bigmovies.com.np/Modules/SageFlick/PaymentMethod/images/e_sewa.png" alt="" />
         </div>
         <div className="last mt-6">
             <h1 className="text-3xl">For Booking</h1>
-            <h1 className="">For Marketing and Enquiries:</h1>
+            <h1 className="mt-4">For Marketing and Enquiries:</h1>
             <h1 className="">Email: hr@bigmovies.com.np</h1>
 
             <h1 className="mt-6">For Complains and Support:</h1>

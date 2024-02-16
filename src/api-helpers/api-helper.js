@@ -22,8 +22,9 @@ export const getAllShows = async(id)=>{
         .catch((err)=>{
             console.log(err)
         })
-    // console.log(res.data)
-    const data = await res.data
+        // console.log(res.data.message)
+    // return res.json({mess: res.data.message})
+    const data = await res.data.message
     return data
 }
 

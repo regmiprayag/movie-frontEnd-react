@@ -18,3 +18,8 @@
 
 // I want to know how to use toaster when logged or logout.
 // I want to add showtimes when the movies are showtime in homepage.
+
+// showtime is same for both animal and salar movie where animal movie showtime is different
+// when i'm deleting the showtime, all seats related to it should be deleted.
+
+// for me => to make the seats generate when showtime is created and study how the showtime has been showing.
