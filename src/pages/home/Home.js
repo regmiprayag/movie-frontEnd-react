@@ -6,24 +6,14 @@ import {Link} from "react-router-dom"
 
 const Home = () => {
   const [movies, setmovies] = useState([])
-  const [showtimes, setShowtimes] = useState([])
   useEffect(() => {
     getAllMovie().then((data) => {
         setmovies(data.movies)
-        getAllShows(data.movies[1]._id)
-            .then((data)=>{
-              setShowtimes(data)
-            })
     }).catch((err) => {
         console.log("messag:", err)
     })
 }, []);
-  function getShows(){
-  }
-
-  useEffect(()=>{
-    // console.log("all showtimes ",showtimes)
-  },[showtimes])
+  
 
   return (
     <div className='text-white'>
@@ -34,15 +24,15 @@ const Home = () => {
           </div>
         </div>
         {/* <MovieDetails id={movies.id}/> */}
-
       <div className='flex flex-col mt-6'>
         <h1 className='text-5xl mx-auto my-4'>Now Showing</h1>
         <div className='allMovies flex mx-auto gap-4 p-4'>
           {movies?.map((movie) => (
-            <MovieDetails key={movie._id} showtimes={showtimes} movie={movie} />
+            <div key={movie._id}>
+            <MovieDetails movie={movie} />
+            </div>
           ))}
         </div>
-
       </div>
     </div>
   )

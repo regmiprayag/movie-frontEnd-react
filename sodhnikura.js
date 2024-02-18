@@ -23,3 +23,13 @@
 // when i'm deleting the showtime, all seats related to it should be deleted.
 
 // for me => to make the seats generate when showtime is created and study how the showtime has been showing.
+
+
+// im making contineously changes in backend of middleware or loggedIn
+// isUserLooged is removied
+// booking pani bhairaxa error pani aairaxa when booking.
+
+
+// Now to deal with PrivateRoutes and isUserLoggedIn
+// To setup the payment
+// 

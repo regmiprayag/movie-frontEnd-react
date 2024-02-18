@@ -21,7 +21,7 @@ export const Navbar = () => {
     return (
         <div className="">
             {/* <nav className="sticky top-0 left-0"> */}
-            <nav className="bg-gray-900 sticky top-0 left-0 flex items-center justify-between px-4 py-2 text-white sm:px-20">
+            <nav className="sticky top-0 left-0 flex items-center justify-between px-4 py-2 text-white sm:px-20">
                 <div className="mx-20">
                     <img
                         src="https://bigmovies.com.np/Modules/Logo/image/Big%20Movies%20logo%20-%20Copy_736038.jpg"
@@ -65,7 +65,7 @@ export const Navbar = () => {
                                 </button>
                             </Link>
                             <Link to="/signup/user">
-                                <button className="bg-blue-800 p-2 px-6 rounded-lg">Signup</button>
+                                <button className="bg-black p-2 px-6 rounded-lg">Signup</button>
                             </Link>
                         </>
                     )}

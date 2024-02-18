@@ -15,6 +15,30 @@ export const getAllMovie = async() => {
     return data;
 }
 
+export const getSeats = async (id) => {
+    const res = await axios.get(`http://localhost:8000/common/getSeats/${id}`,{
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
+        }
+    }).catch(err => console.log(err));
+    // console.log(res.data)
+    const data = await res.data;
+    return data;
+}
+
+export const createBooking = async(seatNumber,movieId,showtimeId)=>{
+    // console.log(seatNumber,movieId,showtimeId);
+    // return;
+    const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`,{
+        seatNumber,
+        showtimeId
+    }).catch(err=>console.log("Hyaa ho k error",err))
+    // console.log(res);
+    const data = res.data
+    return data;
+    // console.log(res)
+}
+
 //Getting all Seat of the movie
 export const getAllShows = async(id)=>{
     const res = await axios
@@ -23,9 +47,10 @@ export const getAllShows = async(id)=>{
             console.log(err)
         })
         // console.log(res.data.message)
-    // return res.json({mess: res.data.message})
+        // console.log(res.data.message)
+    // return res.json({mess: res})
     const data = await res.data.message
-    return data
+    return data;
 }
 
 export const sendUserLoginRequest = async(data)=>{

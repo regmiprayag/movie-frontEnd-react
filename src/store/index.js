@@ -5,6 +5,7 @@ const initialState = {
     value: {}
 }
 
+
 const userSlice = createSlice({
     name:"user",
     initialState,
@@ -24,7 +25,7 @@ export const userActions = userSlice.actions
 
 export const store = configureStore({
     reducer:{
-        user:userSlice.reducer,
+        user: userSlice.reducer,
     }
 })
 

@@ -14,14 +14,14 @@ export const AllRoutes = () => {
   const dispatch = useDispatch()
 
   // const isUserLoggedIn = useSelector((state)=>state)
-  const isUserLoggedIn = useSelector((state)=>state.user.isLoggeIn)
+  const isUserLoggedIn = useSelector((state)=>state.user.isLoggedIn)
   console.log("Is Logged logged in: ", isUserLoggedIn)
 
   useEffect(()=>{
       if(localStorage.getItem("userId")){
           dispatch(userActions.login())
       }
-  },[dispatch])
+  },[isUserLoggedIn])
 
   return (
     <div>
@@ -34,6 +34,8 @@ export const AllRoutes = () => {
           <Route path='/signup/user' element={<pages.auth.SignupUser/>}/>
           {/* <Route path='/dashboard' element={<pages.dashboard.Dashboard/>}/> */}
           <Route path='/booking/:id' element={<PrivateRoute element={<pages.booking.Booking/>} />}/>
+          <Route path='/booking/:id/create' element={<PrivateRoute element={<pages.booking.FinalBooking/>} />}/>
+
         </Routes>
         <Footer />
       </div>
