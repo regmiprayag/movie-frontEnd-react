@@ -89,7 +89,12 @@ export const Booking = () => {
     .then((res)=>{ esewaCall(res.formData) }).catch(err=>{console.log(err)});
 
     const esewaCall = (formData) => {
-      // return console.log(formData);
+      formData['showtimeId'] = showtimeId
+      formData['selectedSeats'] = [selectedSeats]
+      // return console.log(formData)
+      localStorage.setItem('showtimeId',showtimeId)
+      localStorage.setItem('selectedSeats',JSON.stringify(selectedSeats))
+      // return console.log(formData); 
       var path = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
       var form = document.createElement("form");
       form.setAttribute("method", "POST");
