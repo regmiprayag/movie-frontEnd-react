@@ -20,7 +20,6 @@ const PrivateRoute = ({ element }) => {
     useEffect(() => {
         if (Object.keys(user).length === 0) {
             const token = localStorage.getItem('token');
-            
             if (token) {
                 loadDataAndSetInfo();
             } else {

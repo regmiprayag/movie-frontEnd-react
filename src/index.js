@@ -7,7 +7,7 @@ import axios from "axios"
 // import { createStore } from 'redux';
 import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
-import {store} from "./store"
+import {store} from "./store/userSlice"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 axios.defaults.baseURL = "http://localhost:8000"

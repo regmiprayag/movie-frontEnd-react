@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { userActions } from "../store";
+import { userActions } from "../store/userSlice";
 import { useDispatch } from "react-redux";
 // import {
 //     Card,

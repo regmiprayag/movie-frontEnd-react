@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 export const getAllMovie = async() => {
     const res = await axios
@@ -26,17 +26,31 @@ export const getSeats = async (id) => {
     return data;
 }
 
+// creating an order in esewa.
+export const  createOrderEsewa = async (data) => {
+    const res = await axios.post(`http://localhost:8000/bookings/createOrder`,{data},{
+        headers: {
+            'Authorization' : `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
+        }
+    })
+    // console.log("aayo shai sabai thk",res)
+    const resData = await res.data
+    return resData
+}
+
 export const createBooking = async(seatNumber,movieId,showtimeId)=>{
-    // console.log(seatNumber,movieId,showtimeId);
+    // console.log("Inside createBOooiing api",seatNumber,movieId,showtimeId);
     // return;
-    const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`,{
+    const formData = {
         seatNumber,
         showtimeId
+    }
+    const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`,{seatNumber,showtimeId}, {
+        headers: {
+            'Authorization' : `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
+        }
     }).catch(err=>console.log("Hyaa ho k error",err))
-    // console.log(res);
-    const data = res.data
-    return data;
-    // console.log(res)
+    console.log(res);
 }
 
 //Getting all Seat of the movie
@@ -45,10 +59,8 @@ export const getAllShows = async(id)=>{
         .get(`http://localhost:8000/showtimes/${id}`)
         .catch((err)=>{
             console.log(err)
-        })
-        // console.log(res.data.message)
-        // console.log(res.data.message)
-    // return res.json({mess: res})
+    })
+    
     const data = await res.data.message
     return data;
 }

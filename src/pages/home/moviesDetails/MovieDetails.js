@@ -55,7 +55,7 @@ const MovieDetails = ({ movie }) => {
                         //         {showtime.showTime}
                         //     </button>
                         // </Link>
-                        <button onClick={() => handleClick(showtime._id)} className="border border-white p-1 w-20 mt-4 mr-2 rounded-md text-white mb-1">
+                        <button onClick={() => handleClick(showtime._id)} className="border border-white p-1 w-20 mt-4 mr-2 rounded-md text-white mb-1 hover:bg-green-500">
                               {showtime.showTime}
                         </button>
                     ))

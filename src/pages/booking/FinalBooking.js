@@ -1,7 +1,6 @@
 import React,{useEffect, useState} from 'react'
-import { createBooking, getMovieDetails } from '../../api-helpers/api-helper'
+import { createBooking } from '../../api-helpers/api-helper'
 import { useParams, useLocation } from "react-router-dom";
-import { useSelector }from "react-redux"
 import {
     Card,
     CardHeader,
@@ -13,33 +12,17 @@ import {
 
 
 export const FinalBooking = () => {
-    // const isUserLoggedIn = useSelector((state)=>state.user.isLoggeIn)
-    // console.log("Is Logged logged in: ", isUserLoggedIn)
-    // const location = useLocation()
-    // const selectedSeats = useSelector((state)=>state.data.bookedSeats)
-    // console.log("Selected seats are: ", selectedSeats);
-    // const bookedSeats = location.state.data.bookedSeats
-    // console.log(bookedSeats)
     const [tickets, setTickets] = useState({})
     const [movies,setMovies] = useState({})
     const [showtime,setShowtime] = useState({})
-
     const location = useLocation();
-    
-    const movieId = useParams().id;
-    // console.log(movieId)
-    // const selectedSeats = [1,2]
-    // console.log("Yeniharu hunn mathi wala id: ",location.state.showtimeId,movieId,location.state.selectedSeats)
+    const movieId = useParams();
 
     const loadData = ()=>{
         createBooking(location.state.selectedSeats,movieId,location.state.showtimeId).then((res)=>{
             setTickets(res)
-            // getMovieDetails()
-
         }).catch(err=>console.log(err))
     }
-    // console.log("Yo ho selectedSeats id: ",location.state.selectedSeats)
-
     useEffect(()=>{
        loadData()
     },[])
@@ -47,7 +30,6 @@ export const FinalBooking = () => {
     useEffect(()=>{
         console.log("tickets ho hai", tickets);
     },[tickets])
-    // console.log(tickets.movieId)
   return (
     <div className='text-black flex flex-col p-4 mx-20'>
         <Card className="mt-6 w-96 mx-auto">
@@ -59,10 +41,10 @@ export const FinalBooking = () => {
       </CardHeader>
       <CardBody className='m-10'>
         <Typography variant="h5" color="blue-gray" className="mb-2 p-4 text-black">
-            Movie: {tickets.movieId}
+            Movie: 
         </Typography>
         <Typography className='m-10'>
-            Showtime: {tickets.showtimeId}
+            Showtime:
         </Typography>
       </CardBody>
       <CardFooter className='m-10'>

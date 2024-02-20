@@ -1,7 +1,7 @@
 import React from 'react'
 import {LoginUser} from "./LoginUser"
 import { useDispatch } from 'react-redux'
-import { userActions } from '../../store'
+import { userActions } from '../../store/userSlice'
 import { sendUserLoginRequest } from '../../api-helpers/api-helper'
 
 export const AuthUser = () => {
