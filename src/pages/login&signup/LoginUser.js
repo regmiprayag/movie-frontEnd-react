@@ -6,6 +6,7 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
  
 export const LoginUser = ({onSubmit}) => {
     const [email,setEmail]=useState('')
@@ -18,18 +19,22 @@ export const LoginUser = ({onSubmit}) => {
         e.preventDefault()
         onSubmit({email,password})
         try{
+          // toast.success("Login Succesfull")
           navigate('/');
         }catch(err){
-            setError("Invalid email or password")
+            toast.error("Invalid email or password")
         }
     }
+
+
+    
   return (
       <div className='flex justify-center mt-10 text-white'>
         <Card color="transparent" shadow={false}>
-      <Typography variant="h4" color="blue-gray" className='mx-auto text-3xl text-white'>
+      <Typography variant="h4" color="blue-gray" className='mx-auto text-4xl text-white'>
        User Login
       </Typography>
-      <form onSubmit={handleSubmit} className="mt-8 mb-2 w-80 bg-indigo-500 text-white p-6 max-w-screen-lg rounded-2xl sm:w-96">
+      <form onSubmit={handleSubmit} className="mt-8 mb-2 w-80 bg-blue-900 text-white p-6 max-w-screen-lg rounded-2xl sm:w-96">
         <div className="mb-1 flex flex-col gap-6">
           <Typography variant="h6" color="blue-gray" className="-mb-3 font-bold">
             Your Email
@@ -39,10 +44,8 @@ export const LoginUser = ({onSubmit}) => {
             onChange={(e)=>{setEmail(e.target.value)}}
             size="lg"
             placeholder="name@mail.com"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-white"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
+            className="rounded-lg p-2 text-white"
+           
           />
           <Typography variant="h6" color="blue-gray" className="-mb-3 font-bold">
             Password
@@ -53,7 +56,7 @@ export const LoginUser = ({onSubmit}) => {
             type="password"
             size="lg"
             placeholder="********"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-black"
+            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-white"
             labelProps={{
               className: "before:content-none after:content-none",
             }}

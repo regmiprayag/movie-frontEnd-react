@@ -8,6 +8,7 @@ import axios from "axios"
 import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import {store} from "./store/userSlice"
+import toast, { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 axios.defaults.baseURL = "http://localhost:8000"

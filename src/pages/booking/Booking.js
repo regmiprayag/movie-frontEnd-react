@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   Card,
   CardHeader,
   CardBody,
   CardFooter,
-  Typography,
+  div,
   Button,
 } from "@material-tailwind/react";
 import {
@@ -17,6 +17,7 @@ import {
   createOrderEsewa,
   createBooking,
 } from "../../api-helpers/api-helper";
+import { toast } from "react-toastify";
 
 export const Booking = () => {
   const [movie, setMovie] = useState({});
@@ -31,6 +32,8 @@ export const Booking = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
   const loadSeats = async (showtime_id) => {
     await getSeats(showtime_id)
       .then((res) => setSeats(res))
@@ -40,21 +43,18 @@ export const Booking = () => {
   const checkArr = Array(10)
     .fill()
     .map((elem, index) => index + 1);
-  // console.log(checkArr)
 
   useEffect(() => {
-    loadSeats(location.state.id);
+    const showtimeId = sessionStorage.getItem("showtimeId");
+    loadSeats(showtimeId);
     getMovieDetails(id)
       .then((res) => {
         setMovie(res.movies);
       })
-      .catch((err) => console.log(err));
-  }, [id]);
+      .catch((err) => console.log(err))
+    },[id]);
 
-  // console.log("movies:",movie)
   const handleClick = (seatNumber) => {
-    // console.log(seatNumber)
-    console.log(selectedSeats);
     const index = selectedSeats.indexOf(seatNumber);
     if (index === -1) {
       setSelectedSeats([...selectedSeats, seatNumber]);
@@ -67,13 +67,9 @@ export const Booking = () => {
 
   useEffect(() => {
     setSeatArr(seats.seatNumber);
-    console.log("ShowtimeId ho hai",location.state.id)
-    // console.log("Seats haru hun hai",location.state.selectedSeats)
-
   }, [seats]);
 
   const handleSubmit = (selectedSeats, showtimeId) => {
-    // const movieId = req.params()
     const data = {
       selectedSeats: selectedSeats,
       showtimeId: showtimeId,
@@ -86,15 +82,13 @@ export const Booking = () => {
 
 
     createOrderEsewa(amtData)
-    .then((res)=>{ esewaCall(res.formData) }).catch(err=>{console.log(err)});
+    .then((res)=>{
+       esewaCall(res.formData)
+      }).catch(err=>{console.log(err)});
 
     const esewaCall = (formData) => {
-      formData['showtimeId'] = showtimeId
       formData['selectedSeats'] = [selectedSeats]
-      // return console.log(formData)
-      localStorage.setItem('showtimeId',showtimeId)
-      localStorage.setItem('selectedSeats',JSON.stringify(selectedSeats))
-      // return console.log(formData); 
+      sessionStorage.setItem('selectedSeats',JSON.stringify(selectedSeats))
       var path = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
       var form = document.createElement("form");
       form.setAttribute("method", "POST");
@@ -110,29 +104,23 @@ export const Booking = () => {
 
       document.body.appendChild(form);
       form.submit();
-      // navigate(`/${movie._id}/success`, {state:{selectedSeats, showtimeId}});
     };
   };
   return (
     <div className="text-white">
-      <Typography
-        variant="h2"
-        color="blue-gray"
-        className="mb-2 mt-8 flex mx-40"
-      >
-      {movie.title}
-      </Typography>
-      <div class="flex m-auto mx-40">
-            <div class="sold flex m-2 gap-2">
-              <span class="text-white">Sold</span>
-              <button class="p-3 bg-red-700 rounded" />
+      <div className="mb-2 mt-8 flex mx-40 text-4xl">
+        {movie.title}
+      </div>
+      <div className="flex m-auto mx-40">
+            <div className="sold flex m-2 gap-2">
+              <span className="text-white">Sold</span>
+              <button className="p-3 bg-red-700 rounded cursor-default" />
             </div>
-            <div class="available flex m-2 gap-2">
-              <span class="text-white">Available</span>
-              <button class="p-3 bg-gray-400 rounded" />
+            <div className="available flex m-2 gap-2">
+              <span className="text-white">Available</span>
+              <button className="p-3 bg-gray-400 rounded cursor-default" />
             </div>
           </div>
-      {/* <div className="mx-40 text-white">{location.state.id}</div> */}
       <div className="mx-40 flex gap-40">
         <Card className="mt-6 w-96 p-2 border-2 text-white bg-black">
           <CardHeader color="blue-gray" className="relative h-56">
@@ -143,37 +131,26 @@ export const Booking = () => {
             />
           </CardHeader>
           <CardBody>
-            <Typography
-              variant="h2"
-              color="blue-gray"
-              className="mb-2 m-4 text-3xl"
-            >
-              {movie.title}
-            </Typography>
-            <Typography className=" mx-4 mt-4">
+          <div className="mb-2 mt-8 mx-4 text-3xl">
+        {movie.title}
+      </div>
+            <div className=" mx-4 mt-4">
               <span className="text-red-400 font-bold">Description:</span> {movie.description}
-            </Typography>
-            <Typography className=" mx-4 mt-4">
+            </div>
+            <div className=" mx-4 mt-4">
             <span className="text-red-400 font-bold">Release Date:</span> {new Date(movie.releaseDate).toDateString()}
-            </Typography>
-            <Typography className=" mx-4 mt-4">
-            <span className="text-red-400 font-bold">Actors:</span> {movie.actors}
-            </Typography>
+            </div>
+            <div className="mx-4 mt-4">
+                <span className="text-red-400 font-bold">Actors:</span> {movie.actors}
+            </div>
           </CardBody>
-          <CardFooter className="pt-0">
-            {/* <Button className="bg-black w-full">Read More</Button> */}
-          </CardFooter>
         </Card>
         <div className="mt-6 border border-transparent h-60 flex flex-col">
           <CardFooter className="pt-0 text-3xl text-blue-200 m-auto">
             Select Seats
           </CardFooter>
           
-          <Typography
-            variant="h3"
-            color="blue-gray"
-            className="mb-2 m-8 flex justify-center"
-          >
+          <div className="mb-2 m-8 flex justify-center">
             <div className="flex gap-2">
               {checkArr &&
                 checkArr.map((seat, index) => (
@@ -181,7 +158,7 @@ export const Booking = () => {
                     {seatArr?.includes(seat) ? (
                       <button
                         onClick={() => handleClick(index + 1)}
-                        className={`p-2 rounded bg-gray-200 ${
+                        className={`p-3 text-3xl rounded bg-gray-200 ${
                           selectedSeats.includes(seat)
                             ? "bg-green-600"
                             : "bg-gray-600"
@@ -191,7 +168,7 @@ export const Booking = () => {
                       </button>
                     ) : (
                       <button
-                        className="p-2 cursor-not-allowed rounded bg-red-700"
+                        className="p-3 text-3xl cursor-not-allowed rounded bg-red-700"
                         disabled
                       >
                         {seat}
@@ -200,13 +177,13 @@ export const Booking = () => {
                   </>
                 ))}
             </div>
-          </Typography>
+          </div>
           <div className="bg-red-950 w-80 mx-auto m-10 p-1 rounded-lg text-center">
             S C R E E N
           </div>
           <button
             onClick={() => {
-              handleSubmit(selectedSeats, location.state.id);
+              handleSubmit(selectedSeats, sessionStorage.getItem("showtimeId"));
             }}
             className="bg-blue-400 mx-auto w-40 p-2 rounded-md"
             required

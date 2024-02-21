@@ -34,3 +34,6 @@
 // To setup the payment
 // when the success url is seen then it should call createBooking function inorder to book the seats and provide the seat details to the user
 // when success url is seen the seats is not being removed from the database
+
+// When the booking is done and page is refreshed it generated an error.
+// How to use toasts

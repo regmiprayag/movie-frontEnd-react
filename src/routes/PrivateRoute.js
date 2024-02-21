@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import { userActions } from "../store";
 import { userDetails } from "../api-helpers/api-helper";
+import { toast } from "react-toastify";
 
 const PrivateRoute = ({ element }) => {
     // get user information
@@ -21,9 +22,10 @@ const PrivateRoute = ({ element }) => {
         if (Object.keys(user).length === 0) {
             const token = localStorage.getItem('token');
             if (token) {
+                // toast.success("Please login to continue!");
                 loadDataAndSetInfo();
             } else {
-                console.log("Please login to continue!");
+                toast.error("Please login to continue !");
                 navigate('/login/user')
             }
         } else {

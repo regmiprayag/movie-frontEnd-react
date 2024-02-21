@@ -12,7 +12,6 @@ const Home = () => {
     })
 }, []);
   
-
   return (
     <div className='text-white'>
         <div className="relative">
@@ -34,7 +33,6 @@ const Home = () => {
             animation: zoom 4s ease-in-out infinite alternate;
           }
         `}</style> */}
-        {/* <MovieDetails id={movies.id}/> */}
       <div className='flex flex-col mt-6'>
         <h1 className='text-5xl mx-auto my-4'>Now Showing</h1>
         <div className='allMovies flex mx-auto gap-4 p-4'>

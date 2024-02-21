@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { userActions } from "../store/userSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 // import {
 //     Card,
 //     Typography
@@ -15,8 +16,8 @@ export const Navbar = () => {
     
     const handleClick = async () => {
         dispatch(userActions.logout(false));
+        toast.success("Logout Successfull");
     };
-
 
     return (
         <div className="">
@@ -29,26 +30,26 @@ export const Navbar = () => {
                     />
                 </div>
                 <div>
-                    <ul className="flex gap-8">
-                        <li>
+                    <ul className="flex gap-12">
+                        <li className="hover:text-red-400">
                             <Link to="/">HOME</Link>
                         </li>
-                        <li>
+                        <li className="hover:text-red-400">
                             <Link to="/career">CAREER</Link>
                         </li>
-                        <li>
+                        <li className="hover:text-red-400">
                             <Link to="/contact">CONTACT</Link>
                         </li>
-                        <li>
+                        <li className="hover:text-red-400">
                             <Link to="/ticket">TICKET RATE</Link>
                         </li>
                         {isUserLoggedIn && (
                             <div>
                                 <ul className="flex gap-4">
-                                    <li>
+                                    <li className="hover:text-red-400">
                                         <Link to="/booking">BOOKING</Link>
                                     </li>
-                                    <li>
+                                    <li className="hover:text-red-400">
                                         <Link to="/ticket">MY TICKET</Link>
                                     </li>
                                 </ul>
@@ -56,16 +57,16 @@ export const Navbar = () => {
                         )}
                     </ul>
                 </div>
-                <div className="gap-5 mx-20">
+                <div className="gap-5 mx-12">
                     {!isUserLoggedIn && (
                         <>
                             <Link to="/login/user">
-                                <button className="bg-yellow-400 mx-4 p-2 rounded-lg">
+                                <button className="bg-yellow-500 text-black text-lg mx-2 px-3 py-2 rounded-lg hover:bg-yellow-600">
                                     Login Now
                                 </button>
                             </Link>
                             <Link to="/signup/user">
-                                <button className="bg-black p-2 px-6 rounded-lg">Signup</button>
+                                <button className="bg-blue-400 text-white text-lg mx-2 px-6 py-2 rounded-lg hover:bg-blue-800">Signup</button>
                             </Link>
                         </>
                     )}

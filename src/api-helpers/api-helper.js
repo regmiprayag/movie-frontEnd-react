@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const getAllMovie = async() => {
     const res = await axios
@@ -72,7 +73,8 @@ export const sendUserLoginRequest = async(data)=>{
         email: data.email,
         password: data.password
     }).catch((err)=>{
-        console.log(err)
+        toast.error(err.response.data.message);
+        // throw err
     })
     
     const resData = await res.data

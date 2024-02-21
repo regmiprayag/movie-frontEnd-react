@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { createBooking, getMovieById, getShowtimeById, getUserById } from '../../api-helpers/api-helper';
+import { toast } from 'react-toastify';
 
 const Success = () => {
   const location = useLocation()
@@ -10,17 +11,21 @@ const Success = () => {
   const [movies, setMovies] = useState({})
   const [showtimeDetails, setshowtimeDetails] = useState({})
   const [user, setuser] = useState({})
+  const [bookingCreated, setbookingCreated] = useState(false)
+  const [val, setVal] = useState(1)
 
   // const seatNumber = location.state.selectedSeats;
   // const showTimeId = location.state.id;
   let selectedSeats = 2;
-  const createBook = async(showtimeId,movieId,selectedSeats)=>{
-    // const movieId = movie;
+  const createBook = async()=>{
+    const showtimeId = sessionStorage.getItem('showtimeId');
+    const movieId = movie;
+    const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));
     const token = location.search.split("data=")[1];
 
     await createBooking(selectedSeats,movieId,showtimeId)
       .then((res)=>{
-        console.log(res)
+        if(res){
         setTickets(res);
         getMovieById(res.movieid)
           .then((res)=>{setMovies(res.movies)})
@@ -28,11 +33,17 @@ const Success = () => {
           .then((res)=>{setshowtimeDetails(res.showtime)})
         getUserById(res.user)
           .then((res)=>{setuser(res.users)})
+        setbookingCreated(true);
+        toast.success("Booking Created Successfully")
+        sessionStorage.removeItem("selectedSeats");
+        sessionStorage.removeItem("value");
+        sessionStorage.removeItem("showtimeId");
       }
-      )
+    }
+    )
   }
   useEffect(()=>{
-    console.log("Movies bhetey paxi ko ho ",movies)
+    // console.log("At first val= ",val)
   },[movies])
 
   const downloadTicket = (e) => {
@@ -50,14 +61,10 @@ const Success = () => {
 }
 
   useEffect(()=>{
-    console.log("Showtime Id ",localStorage.getItem('showtimeId'));
-    console.log("Movie Id: ",movie);
-    console.log("SelectedSeats is ",JSON.parse(localStorage.getItem('selectedSeats')));
-    const showtimeId = localStorage.getItem('showtimeId');
-    const movieId = movie;
-    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-    createBook(showtimeId,movieId,selectedSeats);
-  },[movie])
+    if(!bookingCreated){
+      createBook();
+    }
+  },[bookingCreated])
 
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -67,7 +74,7 @@ const Success = () => {
         <div className="w-full border-2 border-gray-500 border-dashed p-4 h-auto">
             <p className="text-black text-lg font-bold truncate m-2">Name: {user.name}</p>
             <h2 className="text-black text-sm bg-yellow-200 text-black m-2">Movie ID: {movies.title}</h2>
-            <p className="text-black truncate text-sm bg-yellow-200 text-black m-2">Show Date: {showtimeDetails.showDate}</p>
+            <p className="text-black truncate text-sm bg-yellow-200 text-black m-2">Watch Date: {showtimeDetails.showDate}</p>
             <p className="text-black truncate text-sm bg-yellow-200 text-black m-2">Showtime: {showtimeDetails.showTime}</p>
             <p className="text-black text-sm text-sm bg-yellow-200 text-black m-2">BookedSeats: {tickets.seatNumber}</p>
         </div>
