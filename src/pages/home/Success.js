@@ -18,6 +18,7 @@ const Success = () => {
   // const showTimeId = location.state.id;
   let selectedSeats = 2;
   const createBook = async()=>{
+    
     const showtimeId = sessionStorage.getItem('showtimeId');
     const movieId = movie;
     const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));

@@ -22,14 +22,13 @@ export const LoginUser = ({onSubmit}) => {
           // toast.success("Login Succesfull")
           navigate('/');
         }catch(err){
+            navigate('/login/user')
             toast.error("Invalid email or password")
         }
     }
 
-
-    
   return (
-      <div className='flex justify-center mt-10 text-white'>
+      <div className='flex justify-center mt-10 text-black'>
         <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray" className='mx-auto text-4xl text-white'>
        User Login
@@ -44,8 +43,7 @@ export const LoginUser = ({onSubmit}) => {
             onChange={(e)=>{setEmail(e.target.value)}}
             size="lg"
             placeholder="name@mail.com"
-            className="rounded-lg p-2 text-white"
-           
+            className="rounded-lg p-2 text-black"  
           />
           <Typography variant="h6" color="blue-gray" className="-mb-3 font-bold">
             Password
@@ -56,7 +54,7 @@ export const LoginUser = ({onSubmit}) => {
             type="password"
             size="lg"
             placeholder="********"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-white"
+            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-black"
             labelProps={{
               className: "before:content-none after:content-none",
             }}

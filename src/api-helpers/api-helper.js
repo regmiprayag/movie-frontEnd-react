@@ -68,6 +68,24 @@ export const getAllShows = async(id)=>{
     return data;
 }
 
+// Fetching the showdate for Now.
+export const getAllShowsToday = async()=>{
+    // console.log("Today date in api is: ");
+    const res = await axios.get("http://localhost:8000/showtimesToday").catch(err=>console.log("Showtoday error ho hai ",err))
+
+    const resData = await res.data;
+    return resData;    
+}
+
+export const getAllShowsTomorrow = async()=>{
+    const res = await axios.get("http://localhost:8000/showtimesTommorow").catch(err=>console.log("Tomorrow ko error ho hai ",err))
+    const resData = await res.data;
+
+    // console.log("From api tomorrow movies are: ",resData.showtime);
+    return resData;    
+}
+
+
 export const sendUserLoginRequest = async(data)=>{
     const res = await axios.post("http://localhost:8000/login/user",{
         email: data.email,

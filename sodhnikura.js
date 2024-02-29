@@ -37,3 +37,6 @@
 
 // When the booking is done and page is refreshed it generated an error.
 // How to use toasts
+
+// to display the movies which has showtime of today and to display movies which has shwotime of tomorrow when the bottons are clicked.
+// 

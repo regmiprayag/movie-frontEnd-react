@@ -80,7 +80,6 @@ export const Booking = () => {
       movieId: movie._id,
     };
 
-
     createOrderEsewa(amtData)
     .then((res)=>{
        esewaCall(res.formData)
