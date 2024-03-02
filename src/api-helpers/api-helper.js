@@ -39,20 +39,23 @@ export const  createOrderEsewa = async (data) => {
     return resData
 }
 
-export const createBooking = async(seatNumber,movieId,showtimeId)=>{
-    // console.log("Inside createBOooiing api",seatNumber,movieId,showtimeId);
-    // return;
+export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDate)=>{
+    console.log("Inside createBOooiing api",seatNumber,movieId,showtimeId,showtime);
     const formData = {
         seatNumber,
-        showtimeId
+        showtimeId,
+        movieId,
+        showtime,
+        showDate,
     }
-    const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`,{seatNumber,showtimeId,movieId}, {
+    const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`, formData, {
         headers: {
             'Authorization' : `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
         }
     }).catch(err=>console.log("Hyaa ho k error",err))
-    // console.log("Aayo hai response ta yarr",res);
+    console.log("Aayo hai response ta yarr",res);
     const resData = res.data;
+    toast.success(resData.message);
     return resData;
 }
 
@@ -161,3 +164,28 @@ export const getMovieDetails  = async(id)=>{
     const data = await res.data;
     return data;
 }
+
+// getting booking of a particular user
+export const getBookingsByUser = async(id)=>{
+    // console.log("The user id is: ",id);
+    const res = await axios.get(`http://localhost:8000/bookings/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
+        }
+    }).catch((err)=>{console.log(err)})
+    console.log("The details from froentEnd api are: ",res)
+    return;
+    const data = await res.data;
+    return data;
+}
+
+export const getTickets = async(id)=>{
+    const res = await axios.get(`http://localhost:8000/common/tickets/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
+        }
+    }).catch(err=>{console.log(err)})
+    // console.log("Hello response from api of getTickets are: ",res.data);
+    const resData = await res.data;
+    return resData;
+} 

@@ -21,8 +21,10 @@ const MovieDetails = ({ movie, movieShowtime }) => {
     loadData();
   }, []);
 
-  const handleClick = (id) => {
+  const handleClick = (id,showTime,showDate) => {
     sessionStorage.setItem("showtimeId", id);
+    sessionStorage.setItem("showTime", showTime);
+    sessionStorage.setItem('showDate',showDate);
     navigate(`/booking/${movie._id}`);
   };
 
@@ -72,7 +74,7 @@ const MovieDetails = ({ movie, movieShowtime }) => {
               .map((showtime) => (
                 <button
                   key={showtime._id}
-                  onClick={() => handleClick(showtime._id)}
+                  onClick={() => handleClick(showtime._id,showtime.showTime,showtime.showDate)}
                   // className="border border-white p-1 w-20 mt-4 mr-1 rounded-md text-white mb-1 hover:bg-green-500"
                   className="border border-white w-18 text-sm mt-4 p-1 mx-1 hover:bg-green-500 rounded-md"
                 >

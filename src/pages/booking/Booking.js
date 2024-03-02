@@ -24,6 +24,7 @@ export const Booking = () => {
   const id = useParams().id;
   const [seats, setSeats] = useState({});
   const [showtime, setShowtime] = useState({});
+  // const [showDate, setShowDate] = useState('');
   const [seatArr, setSeatArr] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -34,6 +35,7 @@ export const Booking = () => {
 
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+  // console.log("Movie id is: ",id);
   const loadSeats = async (showtime_id) => {
     await getSeats(showtime_id)
       .then((res) => setSeats(res))
@@ -69,10 +71,11 @@ export const Booking = () => {
     setSeatArr(seats.seatNumber);
   }, [seats]);
 
-  const handleSubmit = (selectedSeats, showtimeId) => {
+  const handleSubmit = (selectedSeats, showtimeId,showDate) => {
     const data = {
       selectedSeats: selectedSeats,
       showtimeId: showtimeId,
+      showDate: showDate
     };
     const amt = selectedSeats.length * 1;
     const amtData = {
@@ -82,11 +85,12 @@ export const Booking = () => {
 
     createOrderEsewa(amtData)
     .then((res)=>{
+        // console.log("The response is: ",res);
        esewaCall(res.formData)
       }).catch(err=>{console.log(err)});
 
     const esewaCall = (formData) => {
-      formData['selectedSeats'] = [selectedSeats]
+      formData['selectedSeats'] = [selectedSeats];
       sessionStorage.setItem('selectedSeats',JSON.stringify(selectedSeats))
       var path = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
       var form = document.createElement("form");
@@ -182,7 +186,7 @@ export const Booking = () => {
           </div>
           <button
             onClick={() => {
-              handleSubmit(selectedSeats, sessionStorage.getItem("showtimeId"));
+              handleSubmit(selectedSeats, sessionStorage.getItem("showtimeId"), sessionStorage.getItem("showDate"));
             }}
             className="bg-blue-400 mx-auto w-40 p-2 rounded-md"
             required

@@ -43,7 +43,7 @@ export const LoginUser = ({onSubmit}) => {
             onChange={(e)=>{setEmail(e.target.value)}}
             size="lg"
             placeholder="name@mail.com"
-            className="rounded-lg p-2 text-black"  
+            className="rounded-lg p-2 text-white"  
           />
           <Typography variant="h6" color="blue-gray" className="-mb-3 font-bold">
             Password
@@ -54,7 +54,7 @@ export const LoginUser = ({onSubmit}) => {
             type="password"
             size="lg"
             placeholder="********"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-black"
+            className=" !border-t-blue-gray-200 focus:!border-t-gray-900 rounded-lg p-2 text-white"
             labelProps={{
               className: "before:content-none after:content-none",
             }}

@@ -39,6 +39,7 @@ export const AllRoutes = () => {
           {/* <Route path='/booking/:id/create' element={<PrivateRoute element={<pages.booking.FinalBooking/>} />}/> */}
           <Route path='/:id/success' element= {<PrivateRoute element={<pages.home.Success/>} />} />
           <Route path='/failure' element= {<PrivateRoute element={<pages.home.Failure/>} />} />
+          <Route path='/ticket' element= {<PrivateRoute element={<pages.tickets.MyTickets/>} />} />
         </Routes>
         <ToastContainer 
           position="top-left"

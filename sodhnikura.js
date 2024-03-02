@@ -39,4 +39,6 @@
 // How to use toasts
 
 // to display the movies which has showtime of today and to display movies which has shwotime of tomorrow when the bottons are clicked.
-// 
+
+// While booking tickets it's being saved 2 times 
+// and i want to update the tickets showTime too when updating the showtime
