@@ -21,28 +21,32 @@ const MovieDetails = ({ movie, movieShowtime }) => {
     loadData();
   }, []);
 
-  const handleClick = (id,showTime,showDate) => {
+  const handleClick = (id, showTime, showDate) => {
     sessionStorage.setItem("showtimeId", id);
     sessionStorage.setItem("showTime", showTime);
-    sessionStorage.setItem('showDate',showDate);
+    sessionStorage.setItem("showDate", showDate);
     navigate(`/booking/${movie._id}`);
   };
 
   const currentDate = new Date();
   let hours = currentDate.getHours();
   const minutes = currentDate.getMinutes();
-  const meridiem = hours >= 12 ? 'PM' : 'AM';
+  const meridiem = hours >= 12 ? "PM" : "AM";
 
   // Convert hours to 12-hour format
   hours = hours % 12 || 12;
 
   // Add leading zero to minutes if less than 10
-  const paddedMinutes = minutes < 10 ? '0' + minutes : minutes;
+  const paddedMinutes = minutes < 10 ? "0" + minutes : minutes;
 
   // Format the time as "hh:mm AM/PM"
-  const formattedTime = hours + ':' + paddedMinutes + ' ' + meridiem;
+  const formattedTime = hours + ":" + paddedMinutes + " " + meridiem;
 
   // console.log("The showtimes are: ",movieShowtime)
+  console.log("Movie Showtime details are: ", showtimes);
+  console.log("The showtime is: ", formattedTime);
+
+  const currentTime = new Date();
 
   return (
     // <div className="max-w-sm border border-blue w-64 bg-gray-800 rounded-md shadow-2xl">
@@ -70,17 +74,50 @@ const MovieDetails = ({ movie, movieShowtime }) => {
           </div>
           <div className="gap-1" key={movie._id}>
             {movieShowtime
-              .filter((showtime) => showtime.movieId === movie._id)
-              .map((showtime) => (
-                <button
-                  key={showtime._id}
-                  onClick={() => handleClick(showtime._id,showtime.showTime,showtime.showDate)}
-                  // className="border border-white p-1 w-20 mt-4 mr-1 rounded-md text-white mb-1 hover:bg-green-500"
-                  className="border border-white w-18 text-sm mt-4 p-1 mx-1 hover:bg-green-500 rounded-md"
-                >
-                  {showtime.showTime}
-                </button>
-              ))}
+              // Sort the showtimes by date and time
+              .sort((a, b) => {
+                // Convert showtime strings to Date objects for comparison
+                const timeA = new Date(`${a.showDate} ${a.showTime}`);
+                const timeB = new Date(`${b.showDate} ${b.showTime}`);
+                return timeA - timeB; // Sort by ascending order of time
+              })
+              // Map over the sorted showtimes
+              .map((showtime) => {
+                // Convert the showtime to a Date object
+                const showtimeDate = new Date(
+                  showtime.showDate + " " + showtime.showTime
+                );
+
+                // Check if the showtime is in the future
+                const isFutureShowtime = showtimeDate > currentTime;
+
+                // Define the button class based on whether it's a future showtime or not
+                const buttonClass = `border border-gray-400 w-18 text-sm mt-4 p-1 mx-1 rounded-md ${
+                  isFutureShowtime
+                    ? "border border-green-800 border-2 text-green-600 hover:bg-green-600 hover:text-white cursor-pointer"
+                    : "text-slate-500 cursor-not-allowed"
+                }`;
+
+                return (
+                  <button
+                    key={showtime._id}
+                    onClick={
+                      isFutureShowtime
+                        ? () =>
+                            handleClick(
+                              showtime._id,
+                              showtime.showTime,
+                              showtime.showDate
+                            )
+                        : null
+                    }
+                    className={buttonClass}
+                    disabled={!isFutureShowtime}
+                  >
+                    {showtime.showTime}
+                  </button>
+                );
+              })}
           </div>
         </div>
       </div>

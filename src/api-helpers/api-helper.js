@@ -39,14 +39,16 @@ export const  createOrderEsewa = async (data) => {
     return resData
 }
 
-export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDate)=>{
-    console.log("Inside createBOooiing api",seatNumber,movieId,showtimeId,showtime);
+export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDate,userId,uuid)=>{
+    console.log("Inside createBOooiing api",seatNumber,movieId,showtimeId,showtime,uuid);
     const formData = {
         seatNumber,
         showtimeId,
         movieId,
         showtime,
         showDate,
+        userId,
+        uuid,
     }
     const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`, formData, {
         headers: {

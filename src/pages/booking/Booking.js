@@ -87,6 +87,7 @@ export const Booking = () => {
     .then((res)=>{
         // console.log("The response is: ",res);
        esewaCall(res.formData)
+       sessionStorage.setItem('uuid',res.uuid)
       }).catch(err=>{console.log(err)});
 
     const esewaCall = (formData) => {
@@ -158,7 +159,7 @@ export const Booking = () => {
               {checkArr &&
                 checkArr.map((seat, index) => (
                   <>
-                    {seatArr?.includes(seat) ? (
+                     {seatArr?.includes(seat) ? (
                       <button
                         onClick={() => handleClick(index + 1)}
                         className={`p-3 text-3xl rounded bg-gray-200 ${
