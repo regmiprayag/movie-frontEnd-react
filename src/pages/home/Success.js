@@ -16,6 +16,12 @@ const Success = () => {
 
   let selectedSeats = 2;
 
+  useEffect(()=>{
+    if(!bookingCreated){
+      createBook();
+    }
+  },[])
+
   const createBook = async()=>{
     const showtimeId = sessionStorage.getItem('showtimeId');
     const movieId = movie;
@@ -55,12 +61,6 @@ useEffect(()=>{
   console.log("The value in tickets are: ",tickets);
 },[])
 
-  useEffect(()=>{
-    if(!bookingCreated){
-      createBook();
-    }
-  },[])
-
   return (
     <div className="min-h-screen flex justify-center items-center">
       {
@@ -85,3 +85,4 @@ useEffect(()=>{
 }
 
 export default Success
+

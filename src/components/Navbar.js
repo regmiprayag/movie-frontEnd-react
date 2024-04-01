@@ -40,7 +40,7 @@ export const Navbar = () => {
                         <Link to="/contact">CONTACT</Link>
                     </li>
                     <li className="hover:text-red-400">
-                        <Link to="/ticket">TICKET RATE</Link>
+                        <Link to="/ticketRate">TICKET RATE</Link>
                     </li>
                     {isUserLoggedIn && (
                         <div>

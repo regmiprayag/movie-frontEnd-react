@@ -26,7 +26,8 @@ const Tickets = ({ticket,movieId}) => {
           <div className="text-sm text-gray-200 mt-2">Show Date: {ticket.showDate}</div>
           <div className="text-sm text-gray-400 mt-2">Booked Seat: {ticket.selectedSeats.map((seat)=>(<span className='mx-2 text-white'>{seat} </span>))}</div>
           <div className="text-sm text-gray-400 mt-2">Showtime: {ticket.showtime}</div>
-          <div className="text-sm text-gray-400 mt-2">Status: <span className='bg-green-600 px-2 rounded-xl text-white'>{ticket.status}</span></div>
+          {/* <div className="text-sm text-gray-400 mt-2">Status: <span className='bg-green-600 px-2 rounded-xl text-white'>{ticket.status}</span></div> */}
+          <div className="text-sm text-gray-400 mt-2">Status:<span className={`px-2 rounded-xl text-white ${ticket.status === 'Updated' ? 'bg-red-600 p-1 m-2' : 'bg-green-600'}`}>{ticket.status}</span></div>
         </div>
           )}
       </div>

@@ -64,6 +64,7 @@ const Home = () => {
 
   console.log("Today's movies are: ",todaymovie);
   console.log("Tomorrow's movies are: ",tomorrowmovie);
+  // console.log("Filtered Tomorrow's movies are: ",filteredMoviesTomorrow);
   // console.log("Today's date is: ",formattedTime);
 
   return (

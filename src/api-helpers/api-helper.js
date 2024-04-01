@@ -40,7 +40,7 @@ export const  createOrderEsewa = async (data) => {
 }
 
 export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDate,userId,uuid)=>{
-    console.log("Inside createBOooiing api",seatNumber,movieId,showtimeId,showtime,uuid);
+    console.log("Inside createBooking api",seatNumber,movieId,showtimeId,showtime,uuid);
     const formData = {
         seatNumber,
         showtimeId,

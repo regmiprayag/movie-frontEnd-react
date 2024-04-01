@@ -72,7 +72,7 @@ const MovieDetails = ({ movie, movieShowtime }) => {
               Play Trailor
             </button>
           </div>
-          <div className="gap-1" key={movie._id}>
+          {/* <div className="gap-1" key={movie._id}>
             {movieShowtime
               // Sort the showtimes by date and time
               .sort((a, b) => {
@@ -92,6 +92,47 @@ const MovieDetails = ({ movie, movieShowtime }) => {
                 const isFutureShowtime = showtimeDate > currentTime;
 
                 // Define the button class based on whether it's a future showtime or not
+                const buttonClass = `border border-gray-400 w-18 text-sm mt-4 p-1 mx-1 rounded-md ${
+                  isFutureShowtime
+                    ? "border border-green-800 border-2 text-green-600 hover:bg-green-600 hover:text-white cursor-pointer"
+                    : "text-slate-500 cursor-not-allowed"
+                }`;
+
+                return (
+                  <button
+                    key={showtime._id}
+                    onClick={
+                      isFutureShowtime
+                        ? () =>
+                            handleClick(
+                              showtime._id,
+                              showtime.showTime,
+                              showtime.showDate
+                            )
+                        : null
+                    }
+                    className={buttonClass}
+                    disabled={!isFutureShowtime}
+                  >
+                    {showtime.showTime}
+                  </button>
+                );
+              })}
+          </div> */}
+          <div className="gap-1" key={movie._id}>
+            {movieShowtime
+              .filter((showtime) => showtime.movieId === movie._id) // Filter showtimes by movie ID
+              .sort((a, b) => {
+                // Sort the filtered showtimes by date and time
+                const timeA = new Date(`${a.showDate} ${a.showTime}`);
+                const timeB = new Date(`${b.showDate} ${b.showTime}`);
+                return timeA - timeB; // Sort by ascending order of time
+              })
+              .map((showtime) => {
+                const showtimeDate = new Date(
+                  `${showtime.showDate} ${showtime.showTime}`
+                );
+                const isFutureShowtime = showtimeDate > currentTime;
                 const buttonClass = `border border-gray-400 w-18 text-sm mt-4 p-1 mx-1 rounded-md ${
                   isFutureShowtime
                     ? "border border-green-800 border-2 text-green-600 hover:bg-green-600 hover:text-white cursor-pointer"
