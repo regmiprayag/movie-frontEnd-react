@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+// import Ticket from "../../../backEnd/models/Ticket";
 
 export const getAllMovie = async() => {
     const res = await axios
@@ -192,3 +193,29 @@ export const getTickets = async(id)=>{
     const resData = await res.data;
     return resData;
 } 
+
+export const cancelTicket = async(ticket)=>{
+    console.log("The ticket from apihelper is: ",ticket);
+    console.log("The reasons from api-helper is: ",localStorage.getItem("reason"));
+    const reason = localStorage.getItem("reason");
+
+    const cancelData = {
+        _id: ticket._id,
+        movieId: ticket.movieId,
+        userId: ticket.userId,
+        showtime: ticket.showtime,
+        showDate: ticket.showDate,
+        reason: reason
+    }
+
+    // console.log('The cancelData from apihelper is: ',cancelData);
+
+    const res = await axios.post(`http://localhost:8000/deleteTicket/${ticket.id}`, cancelData, {
+        headers: {
+            // 'Authorization': `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
+            ticket
+        }
+    }).catch(err=>{console.log(err)})
+    console.log("Hello response from api of cancelTickets are: ",res);
+    return res;
+}
