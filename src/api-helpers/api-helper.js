@@ -29,7 +29,7 @@ export const getSeats = async (id) => {
 
 // creating an order in esewa.
 export const  createOrderEsewa = async (data) => {
-    const res = await axios.post(`http://localhost:8000/bookings/createOrder`,{data},{
+    const res = await axios.post(`http://localhost:8000/booking/createOrder`,{data},{
         headers: {
             'Authorization' : `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
         }
@@ -41,6 +41,7 @@ export const  createOrderEsewa = async (data) => {
 
 export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDate,userId,uuid)=>{
     console.log("Inside createBooking api",seatNumber,movieId,showtimeId,showtime,uuid);
+    console.log("The movieId in api-helper is: ",movieId)
     const formData = {
         seatNumber,
         showtimeId,
@@ -50,7 +51,7 @@ export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDa
         userId,
         uuid,
     }
-    const res = await axios.post(`http://localhost:8000/bookings/${movieId}/create`, formData, {
+    const res = await axios.post(`http://localhost:8000/booking/${movieId}/create`, formData, {
         headers: {
             'Authorization' : `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`
         }

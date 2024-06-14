@@ -34,13 +34,10 @@ export const Navbar = () => {
                         <Link to="/">HOME</Link>
                     </li>
                     <li className="hover:text-red-400">
-                        <Link to="/career">CAREER</Link>
-                    </li>
-                    <li className="hover:text-red-400">
                         <Link to="/contact">CONTACT</Link>
                     </li>
                     <li className="hover:text-red-400">
-                        <Link to="/ticketRate">TICKET RATE</Link>
+                        <Link to="/ticketRates">TICKET RATE</Link>
                     </li>
                     {isUserLoggedIn && (
                         <div>
@@ -80,7 +77,7 @@ export const Navbar = () => {
                                 onClick={handleClick}
                                 className="bg-red-400 mx-4 p-2 rounded-lg"
                             >
-                                Logout Now
+                                Logout
                             </button>
                         </Link>
                     </div>

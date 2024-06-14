@@ -20,9 +20,9 @@ const MyTickets = () => {
   },[])
 
   return (
-    <div className='text-white mx-40'>
+    <div className='text-white'>
       <div className='flex mx-auto text-white text-3xl flex justify-center m-6'>My Tickets</div>
-      <div className="flex gap-4 grid grid-cols-1 md:grid-cols-3 lg:gird-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-10/12">
               {tickets?.map((ticket) => (
                 <div key={ticket._id}>
                   <Tickets ticket={ticket} movieId={ticket.movieId} />

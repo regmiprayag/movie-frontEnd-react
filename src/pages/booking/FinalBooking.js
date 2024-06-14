@@ -10,7 +10,6 @@ import {
     Button,
   } from "@material-tailwind/react";
 
-
 export const FinalBooking = () => {
     const [tickets, setTickets] = useState({})
     const [movies,setMovies] = useState({})
