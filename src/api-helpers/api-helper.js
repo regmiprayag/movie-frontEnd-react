@@ -40,6 +40,19 @@ export const  createOrderEsewa = async (data) => {
     return resData
 }
 
+export const  createOrderKhalti = async (data) => {
+    // console.log("The createOrder khalti are: ",data);
+    // return
+    const res = await axios.post(`http://localhost:8000/booking/createOrder`,{data},{
+        headers: {
+            "Authorization": "Key test_secret_key_550be36a2962411d9b80f22b8d3a28ca" 
+        }
+    })
+    console.log("aayo shai sabai thk",res)
+    const resData = await res.data
+    return resData
+}
+
 export const createBooking = async(seatNumber,movieId,showtimeId,showtime,showDate,userId,uuid)=>{
     console.log("Inside createBooking api",seatNumber,movieId,showtimeId,showtime,uuid);
     console.log("The movieId in api-helper is: ",movieId)
@@ -205,7 +218,7 @@ export const cancelTicket = async(ticket)=>{
         userId: ticket.userId,
         showtime: ticket.showtime,
         showDate: ticket.showDate,
-        reason: reason
+        reason: reason,
     }
 
     // console.log('The cancelData from apihelper is: ',cancelData);
